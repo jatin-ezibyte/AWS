@@ -40,5 +40,6 @@ To display a page via http on localhost:
 vi index.html --> create a file.
 ansible mytestserver -m copy -a 'src=/etc/ansible/index.html dest=/var/www/html' -k
 now browse through localhost and you can see your page.
+New commands
 
-
+ansible mytestserver -m geturl -a "url=anyurl   dest=where to download"
