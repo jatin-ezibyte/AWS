@@ -1,0 +1,44 @@
+To permit root login:
+sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+To set root password:
+sed -i 's/PasswordAuthentication  no/PasswordAuthnetication yes/g' /etc/ssh/sshd_config
+
+To set root password:
+passwd root
+
+to connect to the other linux instance
+ssh root@192.168.1.14
+
+We nee To restart ssh service once connected to other instance
+systemctl restart sshd
+
+To search for packges installed
+grep to search a specific package out of all
+rpm -qa|grep <package name>
+
+Config file for Ansible
+
+/etc/ansible.cfg
+we need to change host key check which was enabled...we need to change it to false. in ansible host file
+
+Command to check on both machines using ancible:
+ansible -m ping mytestserver -k  # ping is the module we are using.
+
+Command to add a user:
+ansible mytestserver -m user -a 'name=test state=present' -k
+Command to delete a user:
+ansible mytestserver -m user -a 'name=test state=absent' -k
+
+Command to install a service:
+ansible mytestserver -m service -a 'name=httpd state=started' -k
+Command to stop the service:
+ansible mytestserver -m service -a 'name=httpd state=started' -k
+
+
+To display a page via http on localhost:
+vi index.html --> create a file.
+ansible mytestserver -m copy -a 'src=/etc/ansible/index.html dest=/var/www/html' -k
+now browse through localhost and you can see your page.
+
+
